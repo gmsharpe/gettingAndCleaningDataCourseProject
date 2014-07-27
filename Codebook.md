@@ -78,4 +78,3 @@ Additional Transformations:
 ===========================================
 
 When the activity was appended to the observed variables, the code representing the activity was replaced with the descriptive name (e.g. "WALKING" instead of '1')
-
