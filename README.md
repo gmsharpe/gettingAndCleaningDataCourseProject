@@ -6,12 +6,13 @@ date: "Saturday, July 26, 2014"
 ===================================
 
 
-
 The dataset includes the following files:
 ============================================
 
 run_analysis.R
+
 all_data.txt
+
 tidy_data_set_containing_means_of_all_variables.txt
 
 The run_analysis.R script combines the test and training data from the UCI HAR Dataset.  Second, it computes the mean of each variable from the combined data and calculates a mean of the observed variables for each activity and subject.
