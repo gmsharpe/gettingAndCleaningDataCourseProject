@@ -9,7 +9,9 @@ The dataset includes the following files:
 ============================================
 
 run_analysis.R
+
 all_data.txt
+
 tidy_data_set_containing_means_of_all_variables.txt
 
 The run_analysis.R script combines the test and training data from the UCI HAR Dataset.  Second, it computes the mean of each variable from the combined data and calculates a mean of the observed variables for each activity and subject.
@@ -24,44 +26,74 @@ The test and training data from the UCI HAR Dataset was combined from files that
 These original files included:
 ============================================
 
-activity_labels.txt': Links the class labels with their activity name.
-'train/X_train.txt': Training set.
-'train/y_train.txt': Training labels.
-'test/X_test.txt': Test set.
-'test/y_test.txt': Test labels.
+activity_labels.txt'
+
+'train/X_train.txt'
+
+'train/y_train.txt'
+
+'test/X_test.txt'
+
+'test/y_test.txt'
+
 'train/subject_train.txt'
+
 'train/Inertial Signals/total_acc_x_train.txt'
+
 'train/Inertial Signals/body_acc_x_train.txt'
+
 'train/Inertial Signals/body_gyro_x_train.txt'
+
 'test/subject_test.txt'
+
 'test/Inertial Signals/total_acc_x_test.txt'
+
 'test/Inertial Signals/body_acc_x_test.txt'
+
 'test/Inertial Signals/body_gyro_x_test.txt'
 
 The set of signals that were gathered from the origbinal UCI HAR Dataset were modified to be more descriptive.  These signals include: 
 ============================================
 
 TimeSignals BodyAcc [XYZ]-Axis
+
 TimeSignals GravityAcc [XYZ]-Axis
+
 TimeSignals BodyAccJerk [XYZ]-Axis
+
 TimeSignals BodyGyro [XYZ]-Axis
+
 TimeSignals BodyGyroJerk [XYZ]-Axis
+
 TimeSignals BodyAccMag
+
 TimeSignals GravityAccMag
+
 TimeSignals BodyAccJerkMag
+
 TimeSignals BodyGyroMag
+
 TimeSignals BodyGyroJerkMag
+
 FrequencyDomainSignals BodyAcc [XYZ]-Axis
+
 FrequencyDomainSignals BodyAccJerk [XYZ]-Axis
+
 FrequencyDomainSignals BodyGyro [XYZ]-Axis
+
 FrequencyDomainSignals BodyAccMag
+
 FrequencyDomainSignals BodyAccJerkMag
+
 FrequencyDomainSignals BodyGyroMag
+
 FrequencyDomainSignals BodyGyroJerkMag
 
 The set of variables that were included in this summary of the UCI HAR Dataset from these signals are:
 ===========================================
+
 Mean: Mean value
+
 Std: Standard deviation
 
 The set of calculated variables in the tidy_data_set_containing_means_of_all_variables.txt include:
