@@ -25,8 +25,6 @@ run_analysis <- function(){
   # label the columns with features as column names
   
   train_df <- x_train
-#   print(head(train_df[,1],10))
-#   print(features[,2])
   names(train_df) <- features[,2]
   
   test_df <- x_test
@@ -152,9 +150,27 @@ computeMeans <- function(){
   
   activities <- c("WALKING","WALKING_UPSTAIRS","WALKING_DOWNSTAIRS","SITTING","STANDING","LAYING")
   titles <- names(data)
-  #results <- data.frame()
-  # names(results) <- titles
+  
+
+  
+  # This computed len is used to loop over all observed mean and std variables, 
+  # ignoring the subject and activity columns
+  
   len <- length(titles) - 2 
+  
+  # Add 'Mean Of' to the beginnng of all column titles where the mean of observed variables is calculated
+  # for each activity and each subject
+  
+  for(m in 1:len) {
+    
+    titles[m] <- paste("MeanOf ", titles[m])
+    
+  }
+  
+  # Loop over all Subjects ('k'), and for each activity ('i'), loop through all variables ('j') and calculate 
+  # the mean of observations given that subject and activity.  Add each result for each variable to an array that is printed
+  # to the file 'tidy_data_set_containing_means_of_all_variables.txt'
+  # Printing each row to the file is is not very fast, but it works...
   
   for(k in 1:30){
     for(i in 1:length(activities)){
@@ -169,22 +185,20 @@ computeMeans <- function(){
       
       record[1,len + 1] <- activities[i]
       record[1,len + 2] <- k
-      # record <- data.frame(temp)
-      #dim(record)
       names(record) <- titles
-      #results <- rbind(results,record,titles)
+
       if(k == 1 & i == 1){
-        write.table(record,file="computed_results.txt", append=FALSE, row.names = FALSE, col.names=TRUE)
+        write.table(record,file="tidy_data_set_containing_means_of_all_variables.txt", append=FALSE, row.names = FALSE, col.names=TRUE)
       }
       else {
-        write.table(record,file="computed_results.txt", append=TRUE, row.names = FALSE, col.names=FALSE)
+        write.table(record,file="tidy_data_set_containing_means_of_all_variables.txt", append=TRUE, row.names = FALSE, col.names=FALSE)
       }
     }
   }
-  
+ 
 }
 
 #####################  run_analysis #####################
 
-run_analysis()
+#run_analysis()
 computeMeans()
