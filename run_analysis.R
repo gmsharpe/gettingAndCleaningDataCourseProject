@@ -1,8 +1,8 @@
 run_analysis <- function(){
   
   # Read in Features (Column Titles) and Activity Labels
-  features <- read.table("features.txt", header=FALSE)
-  activity_labels <- read.table("activity_labels.txt", header=FALSE)
+  features <- read.table("UCI HAR Dataset/features.txt", header=FALSE)
+  activity_labels <- read.table("UCI HAR Dataset/activity_labels.txt", header=FALSE)
   
   # Construct a vector of features that are related to measuring mean() and std()
   newset <- c()
@@ -13,14 +13,14 @@ run_analysis <- function(){
   # Read in Training Data
   
   subject_train <- read.table("train/subject_train.txt", header=FALSE)
-  y_train <- read.table("train/y_train.txt", header=FALSE)
-  x_train <- read.table("train/X_train.txt", header=FALSE,colClasses=c(rep("numeric",561)))
+  y_train <- read.table("UCI HAR Dataset/train/y_train.txt", header=FALSE)
+  x_train <- read.table("UCI HAR Dataset/train/X_train.txt", header=FALSE,colClasses=c(rep("numeric",561)))
   
   # Read in Test Data
   
   subject_test <- read.table("test/subject_test.txt", header=FALSE)
-  y_test <- read.table("test/y_test.txt", header=FALSE)
-  x_test <- read.table("test/X_test.txt", header=FALSE,colClasses=c(rep("numeric",561)))
+  y_test <- read.table("UCI HAR Dataset/test/y_test.txt", header=FALSE)
+  x_test <- read.table("UCI HAR Dataset/test/X_test.txt", header=FALSE,colClasses=c(rep("numeric",561)))
   
   # label the columns with features as column names
   
@@ -70,6 +70,8 @@ run_analysis <- function(){
   
 }
 
+# Replaces numeric codes with actual names of the activities
+
 labelActivitiesWithFriendlyNames <- function(data){
   # swap activity code with label 
   # 1 WALKING
@@ -90,8 +92,7 @@ labelActivitiesWithFriendlyNames <- function(data){
   return(data)
 }
 
-# add columns for subject and activity performed
-# TODO append these columns to the front
+# add column for subject 
 
 addActivityColumn <- function(df, activityCol){
   names(activityCol) <- "Activity"  
@@ -99,17 +100,19 @@ addActivityColumn <- function(df, activityCol){
   return(df)
 }
 
+# add column for activity performed
+
 addSubjectColumn <- function(df, subjectCol){
   names(subjectCol) <- "Subject"
   df <- cbind(df, subjectCol)
   return(df)
 }
 
+# change column titles to make them more descriptive, more 'tidy'.
+
 makeHeadersFriendly <- function(df){
   
-  # Change the names of the headers to be more friendly
   friendly_names <- names(df)
-  
   
   # if it starts with 't' replace with TimeSignals
   # if it starts with 'f' replace with FrequencyDomainSignals
@@ -133,7 +136,7 @@ makeHeadersFriendly <- function(df){
   
 }
 
-computeMeans <- function(){
+compute_means <- function(){
   
   # Read in all data to perform calculations of the average of each variable for each activity and each subject
   
@@ -151,8 +154,6 @@ computeMeans <- function(){
   activities <- c("WALKING","WALKING_UPSTAIRS","WALKING_DOWNSTAIRS","SITTING","STANDING","LAYING")
   titles <- names(data)
   
-
-  
   # This computed len is used to loop over all observed mean and std variables, 
   # ignoring the subject and activity columns
   
@@ -162,9 +163,7 @@ computeMeans <- function(){
   # for each activity and each subject
   
   for(m in 1:len) {
-    
     titles[m] <- paste("MeanOf ", titles[m])
-    
   }
   
   # Loop over all Subjects ('k'), and for each activity ('i'), loop through all variables ('j') and calculate 
@@ -198,7 +197,7 @@ computeMeans <- function(){
  
 }
 
-#####################  run_analysis #####################
+#####################  run_analysis and compute_means #####################
 
 #run_analysis()
-computeMeans()
+compute_means()
