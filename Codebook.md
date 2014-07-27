@@ -2,6 +2,7 @@
 title: "Getting and Cleaning Data Course Project Code Book"
 author: "Gary Sharpe"
 date: "Saturday, July 26, 2014"
+output: word_document
 ---
 
 The dataset includes the following files:
@@ -18,7 +19,26 @@ The all_data.txt file contains all of the means and std calculated from the UCI 
 The tidy_data_set_containing_means_of_all_variables.txt contains calculations of the mean of means and the mean of stds for each activity and subject
 
 
-The set of signals that were gathered from the origbinal UCI HAR Dataset include: 
+The test and training data from the UCI HAR Dataset was combined from files that separately stored the subject #, the observations for each variable, the activities performed, and a lookup for matching the activities to a descriptive name for each activity.
+
+These original files included:
+============================================
+
+activity_labels.txt': Links the class labels with their activity name.
+'train/X_train.txt': Training set.
+'train/y_train.txt': Training labels.
+'test/X_test.txt': Test set.
+'test/y_test.txt': Test labels.
+'train/subject_train.txt'
+'train/Inertial Signals/total_acc_x_train.txt'
+'train/Inertial Signals/body_acc_x_train.txt'
+'train/Inertial Signals/body_gyro_x_train.txt'
+'test/subject_test.txt'
+'test/Inertial Signals/total_acc_x_test.txt'
+'test/Inertial Signals/body_acc_x_test.txt'
+'test/Inertial Signals/body_gyro_x_test.txt'
+
+The set of signals that were gathered from the origbinal UCI HAR Dataset were modified to be more descriptive.  These signals include: 
 ============================================
 
 TimeSignals BodyAcc [XYZ]-Axis
@@ -41,8 +61,8 @@ FrequencyDomainSignals BodyGyroJerkMag
 
 The set of variables that were included in this summary of the UCI HAR Dataset from these signals are:
 ===========================================
-mean: Mean value
-std: Standard deviation
+Mean: Mean value
+Std: Standard deviation
 
 The set of calculated variables in the tidy_data_set_containing_means_of_all_variables.txt include:
 ===========================================
@@ -54,7 +74,8 @@ These variables are represented as:
 
 MeanOf <append each of all of the above variables>
 
-Notes:
-============================================
+Additional Transformations:
+===========================================
 
+When the activity was appended to the observed variables, the code representing the activity was replaced with the descriptive name (e.g. "WALKING" instead of '1')
 
